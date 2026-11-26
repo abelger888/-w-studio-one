@@ -33,15 +33,55 @@ h1{font-size:clamp(28px,5vw,44px);line-height:1.08;margin:0 0 10px;letter-spacin
 <div class="footer">W Studio One · Built as an initial interface prototype</div>
 </main>
 <script>
-document.getElementById('generate').addEventListener('click',()=>{
- const topic=document.getElementById('topic').value.trim();
- const lang=document.getElementById('lang').value;
- const style=document.getElementById('style').value;
- const out=document.getElementById('output');
- document.getElementById('result').textContent=topic
- ? `Topic: ${topic}. Style: ${style}. Language: ${lang}. Suggested short video: open with a strong first-second hook, show one clear funny or useful moment, then finish with a question inviting viewers to comment.`
- : 'Try this idea: a relatable everyday moment turns into an unexpected funny twist. Start with a quick hook, build to the twist, and end with a question for viewers. Choose a topic above to personalize the concept.';
- out.classList.add('show');
-});
+
+document.getElementById('generate').addEventListener('click', async () => {
+      const topic = document.getElementById('topic').value.trim();
+        const lang = document.getElementById('lang').value;
+          const style = document.getElementById('style').value;
+
+            const out = document.getElementById('output');
+              const result = document.getElementById('result');
+                const button = document.getElementById('generate');
+
+                  if (!topic) {
+                      result.textContent = 'Please enter a video topic first.';
+                          out.classList.add('show');
+                              return;
+                                }
+
+                                  button.disabled = true;
+                                    button.textContent = 'Creating with AI...';
+                                      result.textContent = 'Please wait. Your AI concept is being created.';
+                                        out.classList.add('show');
+
+                                          try {
+                                              const response = await fetch('/api/generate-concept', {
+                                                    method: 'POST',
+                                                          headers: {
+                                                                  'Content-Type': 'application/json'
+                                                                        },
+                                                                              body: JSON.stringify({
+                                                                                      topic,
+                                                                                              language: lang,
+                                                                                                      style
+                                                                                                            })
+                                                                                                                });
+
+                                                                                                                    const data = await response.json();
+
+                                                                                                                        if (!response.ok) {
+                                                                                                                              throw new Error(data.error || 'AI generation failed.');
+                                                                                                                                  }
+
+                                                                                                                                      result.textContent = data.concept;
+
+                                                                                                                                        } catch (error) {
+                                                                                                                                            result.textContent = 'Error: ' + error.message;
+                                                                                                                                              } finally {
+                                                                                                                                                  button.disabled = false;
+                                                                                                                                                      button.textContent = 'Create sample concept';
+                                                                                                                                                        }
+                                                                                                                                                        });
+
 </script>
 </body></html>
