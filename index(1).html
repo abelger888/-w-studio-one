@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b12">
+<title>W Studio One</title>
+<style>
+:root{--bg:#090b12;--panel:#111522;--panel2:#171d2d;--line:#273047;--text:#f4f6fb;--muted:#9aa5ba;--purple:#8b5cf6;--cyan:#22d3ee;--green:#34d399}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 85% 0%,#24194b 0,transparent 34%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,Arial,sans-serif}
+.wrap{max-width:1100px;margin:auto;padding:22px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:30px}.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,var(--purple),var(--cyan));display:grid;place-items:center;color:#080a12;font-weight:900}.tag{font-size:11px;color:#d9ccff;border:1px solid #59418d;padding:5px 9px;border-radius:99px}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.08;margin:0 0 10px;letter-spacing:-1.5px}.grad{background:linear-gradient(90deg,#c4a7ff,#67e8f9);color:transparent;background-clip:text}.sub{color:var(--muted);max-width:650px;margin:0 0 24px}
+.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}.card{background:linear-gradient(180deg,#141a29,#101522);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 12px 40px #0003}.card h2{font-size:17px;margin:0 0 16px}.label{display:block;color:#c7d0e2;font-size:13px;margin:14px 0 7px}input,select,textarea{width:100%;background:#0b0f19;border:1px solid #303a52;border-radius:11px;padding:12px;color:var(--text);font:inherit;outline:none}textarea{min-height:88px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--purple)}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 16px;font-weight:750;font-size:14px;cursor:pointer}.primary{background:linear-gradient(100deg,var(--purple),#4f8df7);color:white;width:100%;margin-top:18px}.secondary{background:#20283a;color:#e8edfa;border:1px solid #35415b}.platforms{display:flex;gap:10px;flex-wrap:wrap}.platform{background:#0c111d;border:1px solid #303a52;padding:9px 12px;border-radius:10px;color:#dce4f5}.platform b{color:var(--green);margin-right:6px}.status{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:13px}.dot{width:8px;height:8px;background:#fbbf24;border-radius:50%}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.stat{background:#0b101b;border:1px solid #252e43;border-radius:12px;padding:13px}.stat strong{display:block;font-size:22px}.stat span{font-size:12px;color:var(--muted)}.notice{margin-top:16px;border:1px solid #5b4b25;background:#2a2111;color:#f7d98a;padding:12px;border-radius:12px;font-size:13px}.output{margin-top:16px;display:none;background:#0b101b;border:1px solid #303a52;border-radius:12px;padding:14px}.output.show{display:block}.output h3{margin:0 0 8px;font-size:15px}.output p{color:#cbd5e1;margin:0}.footer{color:#738097;text-align:center;font-size:12px;padding:25px 0 10px}
+@media(max-width:760px){.wrap{padding:16px}.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}.statgrid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="top"><div class="brand"><div class="logo">W</div><div>W STUDIO ONE</div></div><span class="tag">EARLY MVP</span></header>
+<section><h1>Your AI content studio.<br><span class="grad">One place. Two platforms.</span></h1><p class="sub">Plan short-form videos in Amharic and English, prepare scripts, and organize content for TikTok and Instagram.</p></section>
+<div class="grid">
+<section class="card">
+<h2>Create a video concept</h2>
+<label class="label" for="topic">What should the video be about?</label><input id="topic" placeholder="e.g. A funny everyday situation in Addis Ababa">
+<div class="row"><div><label class="label" for="lang">Language</label><select id="lang"><option>Amharic</option><option>English</option><option>Amharic + English</option></select></div><div><label class="label" for="style">Video style</label><select id="style"><option>Funny / Comedy</option><option>Educational</option><option>Storytelling</option><option>Motivational</option></select></div></div>
+<label class="label">Target platforms</label><div class="platforms"><span class="platform"><b>●</b> TikTok</span><span class="platform"><b>●</b> Instagram Reels</span></div>
+<button class="btn primary" id="generate">Create sample concept</button>
+<div class="output" id="output"><h3>Your sample concept</h3><p id="result"></p><p style="margin-top:10px;color:#9aa5ba;font-size:12px">Demo preview only — AI generation and publishing are not connected yet.</p></div>
+</section>
+<aside>
+<section class="card"><h2>Workspace status</h2><div class="status"><span class="dot"></span> Demo mode — integrations not connected</div><div class="statgrid"><div class="stat"><strong>0</strong><span>Videos created</span></div><div class="stat"><strong>0</strong><span>Scheduled</span></div><div class="stat"><strong>2</strong><span>Platforms planned</span></div></div></section>
+<section class="card" style="margin-top:16px"><h2>Next integrations</h2><p class="status">○ Google AI / Veo video generation</p><p class="status">○ Amharic + English voice and captions</p><p class="status">○ TikTok official publishing API</p><p class="status">○ Instagram professional account API</p><div class="notice">Your API key is not needed on this page. Never put secret keys in frontend code or share them in chat.</div></section>
+</aside>
+</div>
+<div class="footer">W Studio One · Built as an initial interface prototype</div>
+</main>
+<script>
+document.getElementById('generate').addEventListener('click',()=>{
+ const topic=document.getElementById('topic').value.trim();
+ const lang=document.getElementById('lang').value;
+ const style=document.getElementById('style').value;
+ const out=document.getElementById('output');
+ document.getElementById('result').textContent=topic
+ ? `Topic: ${topic}. Style: ${style}. Language: ${lang}. Suggested short video: open with a strong first-second hook, show one clear funny or useful moment, then finish with a question inviting viewers to comment.`
+ : 'Try this idea: a relatable everyday moment turns into an unexpected funny twist. Start with a quick hook, build to the twist, and end with a question for viewers. Choose a topic above to personalize the concept.';
+ out.classList.add('show');
+});
+</script>
+</body></html>
